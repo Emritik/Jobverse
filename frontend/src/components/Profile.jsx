@@ -21,11 +21,11 @@ const Profile = () => {
     return (
         <div>
             <Navbar />
-            <div className='max-w-4xl mx-auto bg-white border border-gray-200 rounded-2xl my-5 p-4 md:p-8'>
+            <div className='max-w-4xl mx-auto border border-gray-200  rounded-2xl my-5 p-4 md:p-8'>
                 <div className='flex flex-col sm:flex-row justify-between gap-4'>
                     <div className='flex items-center gap-4'>
                         <Avatar className="h-20 w-20 sm:h-24 sm:w-24">
-                            <AvatarImage src="https://www.shutterstock.com/image-vector/circle-line-simple-design-logo-600nw-2174926871.jpg" alt="profile" />
+                            <AvatarImage src={user?.profile?.profilePhoto} alt="profile" />
                         </Avatar>
                         <div>
                             <h1 className='font-medium text-lg sm:text-xl'>{user?.fullname}</h1>
@@ -59,7 +59,7 @@ const Profile = () => {
                     }
                 </div>
             </div>
-            <div className='max-w-4xl mx-auto bg-white rounded-2xl px-4 md:px-8'>
+            <div className='max-w-4xl mx-auto rounded-2xl px-4 md:px-8 border border-white'>
                 <h1 className='font-bold text-lg my-5'>Applied Jobs</h1>
                 {/* Applied Job Table   */}
                 <AppliedJobTable />

@@ -11,14 +11,14 @@ export const register = async (req, res) => {
     if (!fullname || !email || !phoneNumber || !password || !role) {
       return res.status(400).json({
         message: "Something is missing",
-        success: false
+        success: false,
       });
     }
 
     const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
-        message: 'User already exists with this email.',
+        message: "User already exists with this email.",
         success: false,
       });
     }
@@ -40,16 +40,19 @@ export const register = async (req, res) => {
       role,
       profile: {
         profilePhoto: cloudResponse?.secure_url || "",
-      }
+      },
     });
 
     return res.status(201).json({
       message: "Account created successfully.",
-      success: true
+      success: true,
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Unable to register. Please try again.", success: false });
+    return res.status(500).json({
+      message: "Unable to register. Please try again.",
+      success: false,
+    });
   }
 };
 
@@ -60,7 +63,7 @@ export const login = async (req, res) => {
     if (!email || !password || !role) {
       return res.status(400).json({
         message: "Something is missing",
-        success: false
+        success: false,
       });
     }
 
@@ -83,11 +86,13 @@ export const login = async (req, res) => {
     if (role !== user.role) {
       return res.status(400).json({
         message: "Account doesn't exist with current role.",
-        success: false
+        success: false,
       });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
+    });
 
     const userData = {
       _id: user._id,
@@ -95,16 +100,16 @@ export const login = async (req, res) => {
       email: user.email,
       phoneNumber: user.phoneNumber,
       role: user.role,
-      profile: user.profile
+      profile: user.profile,
     };
 
     return res
       .status(200)
       .cookie("token", token, {
-        maxAge: 1 * 24 * 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000, // 1 day
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "none",
+        secure: process.env.NODE_ENV === "production", // only secure in prod
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       })
       .json({
         message: `Welcome back ${user.fullname}`,
@@ -113,11 +118,15 @@ export const login = async (req, res) => {
       });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Unable to login. Please try again.", success: false });
+    return res
+      .status(500)
+      .json({ message: "Unable to login. Please try again.", success: false });
   }
 };
 
 export const logout = async (req, res) => {
+  console.log("logout")
+
   try {
     return res
       .status(200)
@@ -133,7 +142,9 @@ export const logout = async (req, res) => {
       });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Unable to logout. Please try again.", success: false });
+    return res
+      .status(500)
+      .json({ message: "Unable to logout. Please try again.", success: false });
   }
 };
 
@@ -158,7 +169,7 @@ export const updateProfile = async (req, res) => {
     if (!user) {
       return res.status(400).json({
         message: "User not found.",
-        success: false
+        success: false,
       });
     }
 
@@ -180,16 +191,19 @@ export const updateProfile = async (req, res) => {
       email: user.email,
       phoneNumber: user.phoneNumber,
       role: user.role,
-      profile: user.profile
+      profile: user.profile,
     };
 
     return res.status(200).json({
       message: "Profile updated successfully.",
       user: updatedUser,
-      success: true
+      success: true,
     });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ message: "Unable to update profile. Please try again.", success: false });
+    return res.status(500).json({
+      message: "Unable to update profile. Please try again.",
+      success: false,
+    });
   }
 };
