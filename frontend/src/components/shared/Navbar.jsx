@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { Button } from '../ui/button'
-import { Avatar, AvatarImage } from '../ui/avatar'
+import { Avatar, AvatarImage, AvatarFallback } from '../ui/avatar'
 import { LogOut, User2, Menu, X } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -62,17 +62,23 @@ const Navbar = () => {
                                 <Link to="/signup"><Button className="shadow-[0_0_20px_rgba(139,92,246,0.35)]">Signup</Button></Link>
                             </div>
                         ) : (
-                            <Popover>
+                            <Popover>    
                                 <PopoverTrigger asChild>
-                                    <Avatar className="cursor-pointer">
+                                    <Avatar className="cursor-pointer border-2 border-indigo-400 bg-indigo-100">
                                         <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                                        <AvatarFallback className="bg-indigo-500 text-white">
+                                            <User2 className="h-5 w-5" />
+                                        </AvatarFallback>
                                     </Avatar>
                                 </PopoverTrigger>
                                 <PopoverContent className="w-80 backdrop-blur bg-background/70 border-border/50">
                                     <div className=''>
                                         <div className='flex gap-2 space-y-2'>
-                                            <Avatar className="cursor-pointer">
+                                            <Avatar className="cursor-pointer border-2 border-indigo-400 bg-indigo-100">
                                                 <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                                                <AvatarFallback className="bg-indigo-500 text-white">
+                                                    <User2 className="h-5 w-5" />
+                                                </AvatarFallback>
                                             </Avatar>
                                             <div>
                                                 <h4 className='font-medium'>{user?.fullname}</h4>
@@ -112,15 +118,21 @@ const Navbar = () => {
                     {user && (
                         <Popover>
                             <PopoverTrigger asChild>
-                                <Avatar className="cursor-pointer h-8 w-8">
+                                <Avatar className="cursor-pointer h-8 w-8 border-2 border-indigo-400 bg-indigo-100">
                                     <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                                    <AvatarFallback className="bg-indigo-500 text-white">
+                                        <User2 className="h-4 w-4" />
+                                    </AvatarFallback>
                                 </Avatar>
                             </PopoverTrigger>
                             <PopoverContent className="w-80 backdrop-blur bg-background/70 border-border/50">
                                 <div className=''>
                                     <div className='flex gap-2 space-y-2'>
-                                        <Avatar className="cursor-pointer">
+                                        <Avatar className="cursor-pointer border-2 border-indigo-400 bg-indigo-100">
                                             <AvatarImage src={user?.profile?.profilePhoto} alt="@shadcn" />
+                                            <AvatarFallback className="bg-indigo-500 text-white">
+                                                <User2 className="h-5 w-5" />
+                                            </AvatarFallback>
                                         </Avatar>
                                         <div>
                                             <h4 className='font-medium'>{user?.fullname}</h4>
