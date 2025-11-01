@@ -6,6 +6,7 @@ import { Badge } from './ui/badge'
 import { useNavigate } from 'react-router-dom'
 
 const Job = ({job}) => {
+    // console.log(job)
     const navigate = useNavigate();
     // const jobId = "lsekdhjgdsnfvsdkjf";
 
@@ -30,8 +31,8 @@ const Job = ({job}) => {
                     </Avatar>
                 </Button>
                 <div>
-                    <h1 className='font-medium text-lg'>{job?.company?.name}</h1>
-                    <p className='text-sm text-gray-500'>India</p>
+                    <h1 className='font-medium text-lg text-gray-600'>{job?.company?.name}</h1>
+                    <p className='text-sm text-gray-500'>{job?.location}</p>
                 </div>
             </div>
 
