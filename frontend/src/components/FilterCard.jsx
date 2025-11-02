@@ -15,7 +15,7 @@ const filterData = [
     array: ["Frontend Developer", "Backend Developer", "FullStack Developer"]
   },
   {
-    filterType: "Salary (in LPA)",
+    filterType: "Salary",
     array: ["0-10", "10-20", "20+"]
   },
 ]

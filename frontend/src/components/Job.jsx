@@ -41,9 +41,9 @@ const Job = ({job}) => {
                 <p className='text-sm text-gray-600'>{job?.description}</p>
             </div>
             <div className='flex flex-wrap items-center gap-2 mt-4'>
-                <Badge className={'text-blue-700 font-bold text-xs'} variant="ghost">{job?.position} Positions</Badge>
-                <Badge className={'text-[#F83002] font-bold text-xs'} variant="ghost">{job?.jobType}</Badge>
-                <Badge className={'text-[#7209b7] font-bold text-xs'} variant="ghost">{job?.salary}LPA</Badge>
+                <Badge className={'text-white font-bold text-xs'} variant="ghost">{job?.position} Positions</Badge>
+                <Badge className={'text-[#e2d6d3] font-bold text-xs'} variant="ghost">{job?.jobType}</Badge>
+                <Badge className={'text-[#f4f2f6] font-bold text-xs'} variant="ghost">{job?.salary}LPA</Badge>
             </div>
             <div className='flex flex-col sm:flex-row items-center gap-2 sm:gap-4 mt-4'>
                 <Button onClick={()=> navigate(`/description/${job?._id}`)} variant="outline" className="w-full sm:w-auto">Details</Button>
